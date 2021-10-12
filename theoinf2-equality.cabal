@@ -1,0 +1,79 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           theoinf2-equality
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/theoinf2-equality#readme>
+homepage:       https://github.com/githubuser/theoinf2-equality#readme
+bug-reports:    https://github.com/githubuser/theoinf2-equality/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/theoinf2-equality
+
+library
+  exposed-modules:
+      CNF
+      EqTerm
+      Equality
+      NormalForm
+      PropLogic
+      SAT
+      Tseitin
+      Types
+      UFExamples
+  other-modules:
+      Paths_theoinf2_equality
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , picosat
+  default-language: Haskell2010
+
+executable theoinf2-equality-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_theoinf2_equality
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , picosat
+    , theoinf2-equality
+  default-language: Haskell2010
+
+test-suite theoinf2-equality-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      EqualitySpec
+      EquivalenceSpec
+      Paths_theoinf2_equality
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , QuickCheck
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , picosat
+    , theoinf2-equality
+  default-language: Haskell2010

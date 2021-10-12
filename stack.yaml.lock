@@ -13,7 +13,7 @@ packages:
     hackage: picosat-0.1.6@sha256:7d3130af636c6c8a0b373446a090daa15511d6cb0b264f4b921fa5d4a81b59a3,2138
 snapshots:
 - completed:
-    size: 532382
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/14.yaml
-    sha256: 1ef27e36f38824abafc43224ca612211b3828fa9ffd31ba0fc2867ae2e19ba90
-  original: lts-16.14
+    size: 587126
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/8.yaml
+    sha256: 93a107557e8691ed5ca17beaee41e68222b142c48868fc8c04a4181fb233477d
+  original: lts-18.8
