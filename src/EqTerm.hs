@@ -12,8 +12,6 @@ import           SAT
 import           Tseitin
 import           Types
 
-import qualified Debug.Trace as D
-
 type EqTerm = TermT Equality
 
 
@@ -68,7 +66,7 @@ negateSolution (p:rest) = negateSolution rest \/ eqt
 
 
 -- | Removes auxiliary terms from solution, returns list of 'Equality'
-cleanEqTermPairs :: [(Equality, Bool)] -> [(Equality)]
+cleanEqTermPairs :: [(Equality, Bool)] -> [Equality]
 cleanEqTermPairs eqTerms = map normalizeEqTermBool (cleanEqTerms eqTerms)
 
 -- | Removes auxiliary terms, returns list of '(Equality, Bool)' pairs.
@@ -104,18 +102,18 @@ cleanEqTerms (p@(e, _):rest) =
 -- Aus einer 'Valuation' `val` bekommen Sie mit 'Map.toList val' eine Liste von
 -- '(Equality, Bool)'. Mit 'cleanEqTerms' können Sie aus einer Liste von
 -- '[(Equality, Bool)]' Werten alle unnötigen Hilfsvariablen entfernen.
-solveT :: EqTerm -> IO (Maybe (Valuation Equality))
-solveT t = do
-  solution <- solveCNF t
-  case solution of
-    Nothing  -> pure Nothing
-    Just sol -> undefined
+solveT :: EqTerm -> Maybe (Valuation Equality)
+solveT t =
+  let solution = solveCNF t
+  in case solution of
+       Nothing  -> Nothing
+       Just sol -> undefined
 
 
 solveEqTerm :: EqTerm -> IO ()
-solveEqTerm t = do
+solveEqTerm t =
   if isCNF t then do
-    sol <- solveT t
+    let sol = solveT t
     case sol of
       Nothing -> putStrLn ("no solution found for " ++ show t)
       Just s  -> do

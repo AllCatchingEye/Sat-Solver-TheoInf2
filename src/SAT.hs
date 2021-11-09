@@ -10,12 +10,24 @@ import           Types
 import           Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 
-import           Picosat
+import           CDCL.Algorithm as CDCL
+import           CDCL.Types
 
 data IndexedVars a = IndexedVars
   { intToVarName :: Map Int a
   , varNameToInt ::  Map a Int
   } deriving (Show)
+
+
+
+-- | Diese Funktion gibt den Index des Literals mit dem Namen 'n' in der BiMap
+-- 'idx' zurück. Wenn der Name nicht vorhanden ist, gibt es die von `Map.!`
+-- ausgelöste Exception.
+getIndexOf :: Ord a => IndexedVars a -> a -> Int
+getIndexOf (IndexedVars _ vMap) n = vMap Map.! n
+
+getNameOf :: IndexedVars a -> Int -> a
+getNameOf (IndexedVars iMap _) i = iMap Map.! i
 
 
 example1 :: Term
@@ -85,18 +97,17 @@ convertClause (IndexedVars _ v2i) (BVar n)       = [v2i Map.! n]
 convertClause _ _ = error "only var or negated var is allowed"
 
 
-solveCNF :: (Ord a, Show a) => TermT a -> IO (Maybe (Valuation a))
+solveCNF :: (Ord a, Show a) => TermT a -> Maybe (Valuation a)
 solveCNF t =
   if isCNF t
-  then do
-    let indexed = indexVars t
-    solution <- Picosat.solve (convertClauses indexed t)
-    case solution of
-      Unsatisfiable -> pure Nothing
-      Solution sol  -> pure (Just $ Map.fromList (getSolution indexed sol))
-      Unknown       -> error "unknow result from solver"
+  then
+    let indexed  = indexVars t
+        solution = CDCL.solve (map (map toInteger) $ convertClauses indexed t)
+    in case solution of
+         Unsatisfiable   -> Nothing
+         Satisfiable sol -> Just $ Map.fromList (getSolution indexed sol)
 
-  else pure Nothing
+  else Nothing
 
 
 getSolution :: IndexedVars a -> [Int] -> [(a, Bool)]

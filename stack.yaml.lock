@@ -5,12 +5,16 @@
 
 packages:
 - completed:
-    hackage: picosat-0.1.6@sha256:7d3130af636c6c8a0b373446a090daa15511d6cb0b264f4b921fa5d4a81b59a3,2138
+    name: CDCL
+    version: 0.1.0.0
+    git: https://github.com/mgudemann/sat-solver.git
     pantry-tree:
-      size: 541
-      sha256: 4cb3a66ee7b3ca57b680ebe41815a5965b0860d191cdf08787bb78d0e2fb650b
+      size: 1139
+      sha256: 2e210c04f08841efba6e4812603d7bf29c8a1430c316bdd39b9ded9112316600
+    commit: 000000dfabab07506f34f1224a0075b2b449ba93
   original:
-    hackage: picosat-0.1.6@sha256:7d3130af636c6c8a0b373446a090daa15511d6cb0b264f4b921fa5d4a81b59a3,2138
+    git: https://github.com/mgudemann/sat-solver.git
+    commit: 000000dfabab07506f34f1224a0075b2b449ba93
 snapshots:
 - completed:
     size: 587126
