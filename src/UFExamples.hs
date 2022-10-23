@@ -183,3 +183,26 @@ circuit2 = (l1' === f input)
 
 circuitsEqual :: EqTerm
 circuitsEqual = (theory451 /\ circuit1 /\ circuit2) --> (l5 === l5')
+
+
+--------------------------------------------------------------------
+-- 4.5.2 Verifying a Compilation Process with Translation Validation
+--------------------------------------------------------------------
+
+
+u1 :: Symbol
+u1 = Var "u1"
+
+u2 :: Symbol
+u2 = Var "u2"
+
+y1 :: Symbol
+y1 = Var "y1"
+
+y2 :: Symbol
+y2 = Var "y2"
+
+compilationLemma :: EqTerm
+compilationLemma =
+  ((u1 === (f x1 y1)) /\ (u2 === (f x2 y2)) /\ (z === (g u1 u2)))
+     --> (z === (g (f x1 y1) (f x2 y2)))
