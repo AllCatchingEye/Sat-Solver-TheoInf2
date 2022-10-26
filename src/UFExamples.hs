@@ -202,7 +202,13 @@ y1 = Var "y1"
 y2 :: Symbol
 y2 = Var "y2"
 
+h1 :: Symbol -> Symbol -> Symbol
+h1 = Fun2 "h"
+
+h2 :: Symbol -> Symbol -> Symbol
+h2 = Fun2 "h'"
+
 compilationLemma :: EqTerm
 compilationLemma =
-  ((u1 === (f x1 y1)) /\ (u2 === (f x2 y2)) /\ (z === (g u1 u2)))
-     --> (z === (g (f x1 y1) (f x2 y2)))
+  ((u1 === h1 x1 y1) /\ (u2 === h1 x2 y2) /\ (z === h2 u1 u2))
+     --> (z === h2 (h1 x1 y1) (h1 x2 y2))
