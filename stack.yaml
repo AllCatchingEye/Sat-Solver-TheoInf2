@@ -41,7 +41,7 @@ packages:
 #
 extra-deps:
   - git: https://github.com/mgudemann/sat-solver.git
-    commit: 000000dfabab07506f34f1224a0075b2b449ba93
+    commit: c0ffee62bf8fba328b4da75ff8e0d6503ac9d433
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

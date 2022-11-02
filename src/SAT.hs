@@ -102,7 +102,7 @@ solveCNF t =
   if isCNF t
   then
     let indexed  = indexVars t
-        solution = CDCL.solve (map (map toInteger) $ convertClauses indexed t)
+        solution = CDCL.solve $ convertClauses indexed t
     in case solution of
          Unsatisfiable   -> Nothing
          Satisfiable sol -> Just $ Map.fromList (getSolution indexed sol)

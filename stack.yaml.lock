@@ -5,19 +5,19 @@
 
 packages:
 - completed:
+    commit: c0ffee62bf8fba328b4da75ff8e0d6503ac9d433
+    git: https://github.com/mgudemann/sat-solver.git
     name: CDCL
-    version: 0.1.0.0
-    git: https://github.com/mgudemann/sat-solver.git
     pantry-tree:
-      size: 1139
-      sha256: 2e210c04f08841efba6e4812603d7bf29c8a1430c316bdd39b9ded9112316600
-    commit: 000000dfabab07506f34f1224a0075b2b449ba93
+      sha256: f2abab481404c96d0cb1557f08d32e8db6a6a3aaae978019fffb81a4756195ea
+      size: 1252
+    version: 0.1.0.0
   original:
+    commit: c0ffee62bf8fba328b4da75ff8e0d6503ac9d433
     git: https://github.com/mgudemann/sat-solver.git
-    commit: 000000dfabab07506f34f1224a0075b2b449ba93
 snapshots:
 - completed:
+    sha256: 79a786674930a89301b0e908fad2822a48882f3d01486117693c377b8edffdbe
     size: 590102
     url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/27.yaml
-    sha256: 79a786674930a89301b0e908fad2822a48882f3d01486117693c377b8edffdbe
   original: lts-18.27
