@@ -16,15 +16,9 @@ cnf Top = Top
 cnf t@(BVar _) = t
 cnf (Neg (BVar v)) = Neg (BVar v)
 
-cnf (Disj t1 (Conj t2 t3)) = Conj (Disj t1' t2') (Disj t1' t3')
-  where t1' = cnf t1
-        t2' = cnf t2
-        t3' = cnf t3
+cnf (Disj t1 (Conj t2 t3)) = Conj (Disj t1 t2) (Disj t1 t3)
 
-cnf (Disj (Conj t1 t2) t3) = Conj (Disj t1' t2') (Disj t1' t3')
-  where t1' = cnf t1
-        t2' = cnf t2
-        t3' = cnf t3
+cnf (Disj (Conj t1 t2) t3) = Conj (Disj t1 t3) (Disj t2 t3)
 
 cnf (Disj t1 t2) = Disj (cnf t1) (cnf t2)
 cnf (Conj t1 t2) = Conj (cnf t1) (cnf t2)
