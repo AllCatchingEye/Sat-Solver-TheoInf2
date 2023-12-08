@@ -107,7 +107,14 @@ solveT t =
   let solution = solveCNF t
   in case solution of
        Nothing  -> Nothing
-       Just sol -> undefined
+       Just sol -> do
+         let isConsistent = checkConsistency sol
+         case isConsistent of
+           True  -> Just sol 
+           False -> do
+             let solVals = Map.toList sol
+                 newT = negateSolution solVals
+             solveT newT
 
 
 solveEqTerm :: EqTerm -> IO ()
